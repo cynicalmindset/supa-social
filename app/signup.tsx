@@ -5,6 +5,7 @@ import Input from "@/Componenets/Input";
 import ScreenWrapper from "@/Componenets/ScreenWrapper";
 import { theme } from "@/constants/theme";
 import { hp, wp } from "@/helpers/common";
+import { supabase } from "@/lib/supabase";
 import { useRouter } from "expo-router";
 import React, { useRef, useState } from "react";
 import {
@@ -26,6 +27,28 @@ const Login = () => {
     if (!emailref.current || !passwordref.current || !userref.current) {
       Alert.alert("please fill all details");
       return;
+    }
+    let name = userref.current.trim();
+    let email = emailref.current.trim();
+    let password = passwordref.current.trim();
+    setloading(true);
+    const {
+      data: { session },
+      error,
+    } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          name,
+        },
+      },
+    });
+    setloading(false);
+    // console.log("session", session);
+    // console.log("error", error);
+    if (error) {
+      Alert.alert("Signup", error.message);
     }
   };
   return (

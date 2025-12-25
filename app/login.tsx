@@ -5,6 +5,7 @@ import Input from "@/Componenets/Input";
 import ScreenWrapper from "@/Componenets/ScreenWrapper";
 import { theme } from "@/constants/theme";
 import { hp, wp } from "@/helpers/common";
+import { supabase } from "@/lib/supabase";
 import { useRouter } from "expo-router";
 import React, { useRef, useState } from "react";
 import {
@@ -25,6 +26,18 @@ const Login = () => {
     if (!emailref.current || !passwordref.current) {
       Alert.alert("please fill all details");
       return;
+    }
+    let email = emailref.current.trim();
+    let password = passwordref.current.trim();
+    setloading(true);
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    setloading(false);
+    console.log("error", error);
+    if (error) {
+      Alert.alert("login failed", error.message);
     }
   };
   return (
