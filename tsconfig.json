@@ -13,6 +13,7 @@
     "expo-env.d.ts",
     "helpers/common.js",
     "app/welcome.jsx",
-    "constants/theme.js"
+    "constants/theme.js",
+    "assets/icons/Home.jsx"
   ]
 }

@@ -1,11 +1,14 @@
+import ScreenWrapper from "@/Componenets/ScreenWrapper";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
+import Home from "../assets/icons/Home";
 
 const Signup = () => {
   return (
-    <View>
-      <Text>Signup p</Text>
-    </View>
+    <ScreenWrapper>
+      <Text>Signupp</Text>
+      <Home strokeWidth={1.5} />
+    </ScreenWrapper>
   );
 };
 

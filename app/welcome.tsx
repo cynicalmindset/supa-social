@@ -2,6 +2,7 @@ import Button from "@/Componenets/Button";
 import ScreenWrapper from "@/Componenets/ScreenWrapper";
 import { theme } from "@/constants/theme";
 import { hp, wp } from "@/helpers/common";
+import { useRouter } from "expo-router";
 import {
   Image,
   Pressable,
@@ -13,6 +14,7 @@ import {
 import welcomeimg from "./welcome.png";
 
 const Welcome = () => {
+  const router = useRouter();
   return (
     <ScreenWrapper bg="white">
       <StatusBar barStyle="dark-content"></StatusBar>
@@ -32,11 +34,17 @@ const Welcome = () => {
           <Button
             title="Getting started"
             buttonstyle={{ marginHoriontal: wp(3) }}
-            onPress={() => {}}
+            onPress={() => {
+              router.navigate("/signup");
+            }}
           ></Button>
           <View style={styles.bottomtext}>
             <Text style={styles.logintext}>already have an account!</Text>
-            <Pressable>
+            <Pressable
+              onPress={() => {
+                router.navigate("/login");
+              }}
+            >
               <Text
                 style={[
                   styles.logintext,
